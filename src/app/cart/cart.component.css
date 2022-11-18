@@ -1,0 +1,10 @@
+.bg {
+    background: url(https://as1.ftcdn.net/v2/jpg/02/92/87/92/1000_F_292879289_QUxFXVmRKlrOTdUyJp1xUHflGsvRwOvC.jpg) no-repeat;
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+}
+
+.table-responsive {
+    background-color: white;
+}

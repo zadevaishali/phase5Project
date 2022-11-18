@@ -1,0 +1,37 @@
+h5 {
+    font-family: 'Roboto';
+}
+
+h6 {
+    font-family: 'Roboto';
+}
+
+.price-sort-btn{
+    color: #fff;
+    background-color: rgb(37, 153, 192);
+}
+
+.btn-info {
+    font-family: 'Roboto';
+    background-color: lightblue;
+    color: black;
+}
+
+.btn-primary {
+    font-family: 'Roboto';
+    background-color: rgb(37, 153, 192);
+    color: black;
+}
+
+.btn-info {
+    margin-left: 5px;
+    margin-bottom: 10px;
+}
+
+.status {
+    margin-left: 30px;
+}
+
+.h2 {
+    margin-left: 20px;
+}

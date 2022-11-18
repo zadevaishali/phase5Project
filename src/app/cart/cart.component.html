@@ -1,0 +1,98 @@
+<app-user-nav-bar></app-user-nav-bar>
+<section class="h-100 h-custom bg">
+    <div class="container h-100 py-5">
+        <div class="row d-flex justify-content-center align-items-start h-100" *ngIf="items.length!==0; else noitems">
+            <div class="col">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Food</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Total Price</th>
+                                <th colspan="2" scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of items">
+                                <th scope="row">
+                                    <div class="d-flex align-items-center">
+                                        <img [src]="item.imageUrl" class="img-fluid rounded-3" style="width: 120px;"
+                                            [alt]="item.foodName">
+                                    </div>
+                                </th>
+                                <td class="align-middle">
+                                    <h4 class="mb-0" style="font-weight: 500;">{{item.foodName}}</h4>
+                                </td>
+                                <td class="align-middle">
+                                    <h4 class="mb-0" style="font-weight: 500;">{{item.price | currency: 'INR'}}</h4>
+                                </td>
+                                <td class="align-middle">
+                                    <div class="d-flex flex-row">
+                                        <button [disabled]="checkDisableStatus(item.quantity)"
+                                            (click)="updateQuantityAndPrice(item, item.quantity - 1,'minus')">
+                                       <fa-icon [icon]="faMinus"></fa-icon> 
+                                        </button>
+                                        <input min="0" name="quantity" [value]="item.quantity" type="text"
+                                            class="form-control form-control-sm text-center" style="width: 50px;" />
+                                        <button (click)="updateQuantityAndPrice(item, item.quantity + 1, 'plus')">
+                                           <fa-icon [icon]="faPlus"></fa-icon> 
+                                        </button>
+                                    </div>
+                                </td>
+                                <td class="align-middle">
+                                    <h4 class="mb-0" style="font-weight: 500;">{{item.totalPrice | currency: 'INR'}}
+                                    </h4>
+                                </td>
+                                <td class="align-middle">
+                                    <button (click)="onDelete(item)" style="outline: none;">
+                                       <fa-icon [icon]="faTrash"></fa-icon>
+                                    </button>
+                                </td>
+                                <td class="align-middle">
+                                    <button (click)="onEditConfirm(item)" style="outline: none;">
+                                        <fa-icon [icon]="faCircleCheck"></fa-icon>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card shadow-2-strong" style="width:300px;border-radius: 16px;">
+                <div class="card-body p-3">
+                    <div class="col">
+                        <div class="d-flex justify-content-between">
+                            <h3 class="mb-2">Subtotal</h3>
+
+                            <p class="mb-2">{{subTotal | currency:'INR'}}</p>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <h3 class="mb-0">Shipping</h3>
+                            <p class="mb-0">{{6 | currency: 'INR'}}</p>
+                        </div>
+
+                        <hr class="my-4">
+
+                        <div class="d-flex justify-content-between mb-4">
+                            <h3 class="mb-2">Total</h3>
+                            <p class="mb-2">{{total | currency : 'INR'}}</p>
+                        </div>
+
+                        <button type="button" class="btn btn-primary" style="float: right;">
+                            <div class="d-flex" (click)="onPlaceOrder()">
+                                <span>Place order</span>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<ng-template #noitems>
+    <app-no-items></app-no-items>
+</ng-template>

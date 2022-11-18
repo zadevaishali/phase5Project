@@ -1,0 +1,42 @@
+<app-user-nav-bar></app-user-nav-bar>
+<div class="foods-container">
+    <div class="food-table" *ngIf="userOrders.length!==0; else noitems">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Order ID</th>
+                    <th scope="col">Foods</th>
+                    <th scope="col">Total Price</th>
+                    <th scope="col">Status</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let order of userOrders">
+                <tr>
+                    <td>
+                        <h4>{{order.id}}</h4>
+                    </td>
+                    <td><span *ngFor="let orderItem of order.orderedItems">
+                            <h4>{{orderItem.name}}</h4><br>
+                        </span></td>
+                    <td>
+                        <h4>{{order.totalPrice + shipping}}</h4>
+                    </td>
+                    <td>
+                        <h4>{{order.status}}</h4>
+                    </td>
+                    <td>
+                        <fa-icon [icon]="faTrash" (click)="onDelete(order.id)"></fa-icon>
+                    </td>
+                    <td>
+                        <fa-icon [icon]="faCircleInfo" (click)="showInvoice(order.id)"></fa-icon>
+                    </td> 
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <ng-template #noitems>
+        <app-no-items></app-no-items>
+    </ng-template>
+</div>

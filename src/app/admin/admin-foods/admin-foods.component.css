@@ -1,0 +1,14 @@
+.bg{
+    background: url(https://t3.ftcdn.net/jpg/02/70/22/30/240_F_270223090_2Ffvx2jTTSogfPkLvhppMulfMrHjk6Td.jpg) no-repeat;
+    width: 100%;
+    height: 1000px;
+    background-size: cover;
+}
+
+h4{
+    font-weight: 500;
+}
+
+.table {
+    background-color: white;
+}

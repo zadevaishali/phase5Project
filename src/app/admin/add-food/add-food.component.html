@@ -1,0 +1,41 @@
+<mat-toolbar>
+    <span>{{foodService.foodForm.controls['id'].value === 0? "New food":"Modify food"}}</span>
+    <span class="food-form-toolbar-fill-remaining-space 
+    "></span>
+    <button class="btn-dialog-close" mat-button (click)="onClose()" tabIndex="-1">
+        <mat-icon>clear</mat-icon>
+    </button>
+</mat-toolbar>
+
+
+<form [formGroup]="foodService.foodForm" class="add-food-form-container" (submit)="onSubmit()">
+    <mat-form-field hidden>
+        <input matInput type="text" formControlName="id" />
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Food name</mat-label>
+        <input matInput type="text" formControlName="name" />
+        <mat-error>This field is mandatory</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Price</mat-label>
+        <input matInput type="text" formControlName="price" />
+        <mat-error>This field is mandatory</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Quantity</mat-label>
+        <input matInput type="text" formControlName="quantityAvailable" />
+        <mat-error>This field is mandatory</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Image URL</mat-label>
+        <input matInput type="text" formControlName="imageUrl" />
+        <mat-error>This field is mandatory</mat-error>
+    </mat-form-field>
+    <div class="button-row">
+        <button mat-button class="add-btn" type="submit"
+            [disabled]="foodService.foodForm.invalid"><span>{{foodService.foodForm.controls['id'].value === 0?
+                "Add":"Modify"}}</span></button>
+        <button mat-button class="clear-btn" style="width:30%" (click)="onClear()">Clear</button>
+    </div>
+</form>

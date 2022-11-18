@@ -1,0 +1,101 @@
+<div class="foods-container bg">
+    <section class="h-100 h-custom bg">
+        <div class="container h-100 py-5">
+            <div class="food-table" *ngIf="foods.length !== 0; else noitems">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Foods</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Price</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let food of foods">
+                        <tr>
+                            <td scope="row"><img style="width: 150px;" [src]="food.imageUrl" [alt]="food.name"></td>
+                            <td>
+                                <h4>{{food.name}}</h4>
+                            </td>
+                            <td>
+                                <h4>{{food.quantityAvailable}}</h4>
+                            </td>
+                            <td>
+                                <h4>{{food.price}}</h4>
+                            </td>
+                            <td>
+                                <fa-icon [icon]="faPen" (click)="onEdit(food)"></fa-icon>
+                            </td>
+                            <td>
+                                <fa-icon [icon]="faTrash" (click)="onDelete(food.id)"></fa-icon>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+    <ng-template #noitems>
+        <app-no-items></app-no-items>
+    </ng-template>
+    <button class="add-food-fab" (click)="onAdd()">+</button>
+</div>
+
+
+
+
+<!-- MATERIAL DATA TABLE AND SEARCH BOX -->
+
+<!-- <div>
+    <mat-form-field class="search-form-field" floatLabel="never">
+        <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="applyFilter()">
+        <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="onSearchClear()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
+    <table mat-table [dataSource]="fruitsTableList" class="mat-elevation-z8">
+        <ng-container matColumnDef="fruits">
+            <mat-header-cell *matHeaderCellDef>Fruits</mat-header-cell>
+            <mat-cell *matCellDef="let element"><img [src]="element.imageUrl" [alt]="element.name"
+                    style="width: fill; height: 150px;">
+            </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.name}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="quantityAvailable">
+            <mat-header-cell *matHeaderCellDef>Quantity</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.quantityAvailable}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="price">
+            <mat-header-cell *matHeaderCellDef>Price</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.price | currency: 'INR'}} per KG</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <button mat-icon-button color="primary">
+                    <fa-icon [icon]="faPen"></fa-icon>
+                </button>
+                <button mat-icon-button color="warn">
+                    <fa-icon [icon]="faTrash"></fa-icon>
+                </button>
+            </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="loading">
+            <mat-footer-cell *matFooterCellDef colspan="6">Loading data...</mat-footer-cell>
+        </ng-container>
+        <ng-container matColumnDef="noData">
+            <mat-footer-cell *matFooterCellDef colspan="6">No data.</mat-footer-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide': fruitsTableList!=null}"></mat-footer-row>
+        <mat-footer-row *matFooterRowDef="['noData']"
+            [ngClass]="{'hide': !(fruitsTableList!=null && fruitsTableList.data.length===0) }"></mat-footer-row>
+    </table>
+
+</div> -->

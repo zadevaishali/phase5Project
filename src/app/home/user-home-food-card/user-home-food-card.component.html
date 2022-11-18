@@ -1,0 +1,42 @@
+<div class="homebody" *ngIf="foods.length!==0; else noitems">
+    <div class="row">
+
+        <div class="col-md-10">
+            <div class="row">
+
+                <div class="col-md-4 mx-auto my-5 " *ngFor="let food of foods | sort:['price',sortDirection]">
+                    <div class="card">
+                        <img class="card-img-top" src="{{food.imageUrl}}" alt="Card image cap">
+                        <div class="card-body">
+                            <h2 class="card-title">{{food.name}}</h2>
+                            <h3 class="card-description">Price {{food.price}} Rs</h3>
+                            <button class="btn btn-info" font-style="Roboto;" (click)="addToCart(food)"
+                                style="float:left;">Add
+                                to cart</button>
+                            <button class="btn btn-primary" font-style="Roboto;" (click)="onNavigateOrder(food)"
+                                style="float:right;">Add to Order</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-md-2 my-5 ">
+            <div class="row">
+                <div class="card-body" style="padding:12px">
+                    <button type="button" class="btn price-sort-btn" (click)="onSortDirection()">
+                        Price
+                       <fa-icon *ngIf="sortDirection==='desc'" [icon]="faArrowUp"></fa-icon> 
+                       <fa-icon *ngIf="sortDirection==='asc'" [icon]="faArrowDown"></fa-icon> 
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<ng-template #noitems>
+    <app-no-items></app-no-items>
+</ng-template>
